@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - Energy Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-glob"></div>
+    <div class="container">
+        <header>
+            <h1>Verify Email</h1>
+            <p>Enter the 6-digit code sent to your email</p>
+        </header>
+
+        <div class="card">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('verify_otp') }}" method="POST">
+                <div class="form-group">
+                    <label for="otp">OTP Code</label>
+                    <input type="text" id="otp" name="otp" required placeholder="123456" maxlength="6"
+                        style="letter-spacing: 5px; text-align: center; font-size: 1.5rem;">
+                </div>
+
+                <button type="submit">Verify</button>
+            </form>
+
+            <div class="auth-links">
+                <p><small>(Check the terminal for the code)</small></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

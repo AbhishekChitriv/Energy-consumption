@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Consumption Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="background-glob"></div>
+    <div class="container">
+        <header>
+            <h1>Energy Force</h1>
+            <p>Next-Gen Consumption AI</p>
+        </header>
+
+        <main class="card">
+            <form id="predictionForm">
+                <div class="form-group">
+                    <label for="building_type">Building Type</label>
+                    <div class="select-wrapper">
+                        <select id="building_type" name="building_type" required>
+                            <option value="" disabled selected>Select Type</option>
+                            <option value="0">Residential</option>
+                            <option value="1">Commercial</option>
+                            <option value="2">Industrial</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="square_footage">Square Footage</label>
+                    <input type="number" id="square_footage" name="square_footage" placeholder="e.g. 2500" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="number_of_occupants">Occupants</label>
+                    <input type="number" id="number_of_occupants" name="number_of_occupants" placeholder="e.g. 4"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="appliances_used">Appliances Used</label>
+                    <input type="number" id="appliances_used" name="appliances_used" placeholder="e.g. 12" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="average_temperature">Avg Temperature (°C)</label>
+                    <input type="number" id="average_temperature" name="average_temperature" step="0.1"
+                        placeholder="e.g. 24.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="day_of_week">Day of Week</label>
+                    <div class="select-wrapper">
+                        <select id="day_of_week" name="day_of_week" required>
+                            <option value="" disabled selected>Select Day</option>
+                            <option value="Weekday">Weekday</option>
+                            <option value="Weekend">Weekend</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" id="predictBtn">
+                    <span class="btn-text">Predict Consumption</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+
+            <div id="result" class="result-container hidden">
+                <div class="result-label">Estimated Consumption</div>
+                <div class="result-value"><span id="predictionValue">0</span> kWh</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
