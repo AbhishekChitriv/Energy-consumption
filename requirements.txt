@@ -1,0 +1,7 @@
+Flask
+numpy
+scikit-learn
+flask-sqlalchemy
+flask-login
+gunicorn
+python-dotenv
